@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Mexico E-commerce Profit Calculator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #ffe600;
+      padding: 25px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #555;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      border: none;
+      border-radius: 7px;
+      background: #3483fa;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #2968c8;
+    }
+
+    .result {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+    }
+
+    .result strong {
+      color: #333;
+    }
+
+    .profit {
+      font-size: 22px;
+      color: #00a650;
+      font-weight: bold;
+    }
+
+    .negative {
+      color: #d93025;
+    }
+
+    .highlight {
+      background: #f5fff8;
+      border: 2px solid #00a650;
+    }
+
+    .note {
+      margin-top: 15px;
+      padding: 12px;
+      background: #fff8d7;
+      border-radius: 6px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: right;
+      border-bottom: 1px solid #eee;
+    }
+
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+
+    .good {
+      color: #00a650;
+      font-weight: bold;
+    }
+
+    .bad {
+      color: #d93025;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🇲🇽 Mexico E-commerce Profit Calculator</h1>
+  <p>Mercado Libre México · Landed Cost · Profit Analysis</p>
+</header>
+
+<div class="container">
+
+  <div class="grid">
+
+    <!-- PURCHASE COST -->
+
+    <div class="card">
+
+      <h2>📦 商品采购 / Purchase</h2>
+
+      <label>商品采购总价 RMB</label>
+      <input id="purchase" type="number" value="6566.05" step="0.01">
+
+      <label>国际物流 + 清关 RMB</label>
+      <input id="shippingRMB" type="number" value="2650" step="0.01">
+
+      <label>商品数量</label>
+      <input id="quantity" type="number" value="600">
+
+      <label>1 RMB = ? MXN</label>
+      <input id="exchange" type="number" value="2.45" step="0.01">
+
+    </div>
+
+
+    <!-- MERCADO LIBRE -->
+
+    <div class="card">
+
+      <h2>🛒 Mercado Libre</h2>
+
+      <label>销售价格 MXN / 件</label>
+      <input id="price" type="number" value="299">
+
+      <label>Mercado Libre 销售费率 %</label>
+      <input id="commission" type="number" value="15" step="0.1">
+
+      <label>ML物流成本 MXN / 件</label>
+      <input id="mlShipping" type="number" value="0" step="0.01">
+
+      <label>包装成本 MXN / 件</label>
+      <input id="packaging" type="number" value="5" step="0.01">
+
+      <label>广告成本 %</label>
+      <input id="ads" type="number" value="0" step="0.1">
+
+      <label>税费 / 预扣 %</label>
+      <input id="tax" type="number" value="10" step="0.1">
+
+      <button onclick="calculate()">计算利润 Calculate Profit</button>
+
+    </div>
+
+
+    <!-- RESULTS -->
+
+    <div class="card highlight">
+
+      <h2>💰 Profit Result</h2>
+
+      <div class="result">
+        <span>总落地成本</span>
+        <strong id="totalCost">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>单件落地成本</span>
+        <strong id="unitCost">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>ML销售费用 / 件</span>
+        <strong id="mlFee">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>税费/预扣 / 件</span>
+        <strong id="taxCost">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>广告成本 / 件</span>
+        <strong id="adsCost">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>单件净利润</span>
+        <strong id="profitUnit" class="profit">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>净利润率</span>
+        <strong id="margin">0%</strong>
+      </div>
+
+      <div class="result">
+        <span>全部售完预计利润</span>
+        <strong id="totalProfit" class="profit">$0</strong>
+      </div>
+
+      <div class="result">
+        <span>盈亏平衡售价</span>
+        <strong id="breakEven">$0</strong>
+      </div>
+
+      <div class="note">
+        ⚠️ 当前 Mercado Libre 费率、物流费用及税费均为手动输入。
+        后续版本可以接入 Mercado Libre API，提高计算准确度。
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- PRICE SIMULATOR -->
+
+  <div class="card" style="margin-top:20px;">
+
+    <h2>📊 售价模拟器 / Price Simulator</h2>
+
+    <p>
+      比较不同售价下的单件利润和总利润。
+    </p>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>售价 MXN</th>
+          <th>单件利润</th>
+          <th>利润率</th>
+          <th>全部售完利润</th>
+        </tr>
+      </thead>
+
+      <tbody id="simulation">
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<footer>
+  Mexico E-commerce Profit Calculator · V1
+</footer>
+
+
+<script>
+
+function money(value) {
+
+  return new Intl.NumberFormat(
+    "es-MX",
+    {
+      style: "currency",
+      currency: "MXN"
+    }
+  ).format(value);
+
+}
+
+
+function calculateProfitAtPrice(price) {
+
+  const purchase =
+    parseFloat(document.getElementById("purchase").value) || 0;
+
+  const shippingRMB =
+    parseFloat(document.getElementById("shippingRMB").value) || 0;
+
+  const quantity =
+    parseFloat(document.getElementById("quantity").value) || 1;
+
+  const exchange =
+    parseFloat(document.getElementById("exchange").value) || 0;
+
+  const commission =
+    (parseFloat(document.getElementById("commission").value) || 0) / 100;
+
+  const mlShipping =
+    parseFloat(document.getElementById("mlShipping").value) || 0;
+
+  const packaging =
+    parseFloat(document.getElementById("packaging").value) || 0;
+
+  const ads =
+    (parseFloat(document.getElementById("ads").value) || 0) / 100;
+
+  const tax =
+    (parseFloat(document.getElementById("tax").value) || 0) / 100;
+
+
+  const totalCost =
+    (purchase + shippingRMB) * exchange;
+
+  const unitCost =
+    totalCost / quantity;
+
+  const mlFee =
+    price * commission;
+
+  const taxCost =
+    price * tax;
+
+  const adsCost =
+    price * ads;
+
+
+  const profit =
+    price
+    - unitCost
+    - mlFee
+    - mlShipping
+    - packaging
+    - taxCost
+    - adsCost;
+
+
+  const margin =
+    price > 0
+      ? (profit / price) * 100
+      : 0;
+
+
+  return {
+
+    totalCost,
+    unitCost,
+    mlFee,
+    taxCost,
+    adsCost,
+    profit,
+    margin
+
+  };
+
+}
+
+
+function calculate() {
+
+  const price =
+    parseFloat(document.getElementById("price").value) || 0;
+
+  const quantity =
+    parseFloat(document.getElementById("quantity").value) || 1;
+
+  const commission =
+    (parseFloat(document.getElementById("commission").value) || 0) / 100;
+
+  const ads =
+    (parseFloat(document.getElementById("ads").value) || 0) / 100;
+
+  const tax =
+    (parseFloat(document.getElementById("tax").value) || 0) / 100;
+
+  const mlShipping =
+    parseFloat(document.getElementById("mlShipping").value) || 0;
+
+  const packaging =
+    parseFloat(document.getElementById("packaging").value) || 0;
+
+
+  const r =
+    calculateProfitAtPrice(price);
+
+
+  document.getElementById("totalCost").innerText =
+    money(r.totalCost);
+
+  document.getElementById("unitCost").innerText =
+    money(r.unitCost);
+
+  document.getElementById("mlFee").innerText =
+    money(r.mlFee);
+
+  document.getElementById("taxCost").innerText =
+    money(r.taxCost);
+
+  document.getElementById("adsCost").innerText =
+    money(r.adsCost);
+
+  document.getElementById("profitUnit").innerText =
+    money(r.profit);
+
+  document.getElementById("margin").innerText =
+    r.margin.toFixed(1) + "%";
+
+  document.getElementById("totalProfit").innerText =
+    money(r.profit * quantity);
+
+
+  const percentageCosts =
+    commission + ads + tax;
+
+  const fixedCost =
+    r.unitCost + mlShipping + packaging;
+
+  const breakEven =
+    (1 - percentageCosts) > 0
+      ? fixedCost / (1 - percentageCosts)
+      : 0;
+
+
+  document.getElementById("breakEven").innerText =
+    money(breakEven);
+
+
+  simulatePrices();
+
+}
+
+
+function simulatePrices() {
+
+  const currentPrice =
+    parseFloat(document.getElementById("price").value) || 299;
+
+  const quantity =
+    parseFloat(document.getElementById("quantity").value) || 1;
+
+
+  const prices = [
+    Math.max(1, currentPrice - 100),
+    Math.max(1, currentPrice - 50),
+    currentPrice,
+    currentPrice + 50,
+    currentPrice + 100
+  ];
+
+
+  const tbody =
+    document.getElementById("simulation");
+
+  tbody.innerHTML = "";
+
+
+  prices.forEach(price => {
+
+    const r =
+      calculateProfitAtPrice(price);
+
+
+    const row =
+      document.createElement("tr");
+
+
+    row.innerHTML = `
+
+      <td>${money(price)}</td>
+
+      <td class="${r.profit >= 0 ? "good" : "bad"}">
+        ${money(r.profit)}
+      </td>
+
+      <td class="${r.margin >= 0 ? "good" : "bad"}">
+        ${r.margin.toFixed(1)}%
+      </td>
+
+      <td class="${r.profit >= 0 ? "good" : "bad"}">
+        ${money(r.profit * quantity)}
+      </td>
+
+    `;
+
+
+    tbody.appendChild(row);
+
+  });
+
+}
+
+
+calculate();
+
+</script>
+
+</body>
+</html>
