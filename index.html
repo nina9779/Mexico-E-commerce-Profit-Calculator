@@ -4,159 +4,220 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mexico E-commerce Profit Calculator V3</title>
+<title>Mexico E-commerce Profit Calculator V3.1</title>
 
 <style>
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f6f8;
-  color:#222;
+body {
+  margin: 0;
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+  background: #f4f6f8;
+  color: #222;
 }
 
-header{
-  background:#ffe600;
-  padding:25px;
-  text-align:center;
+header {
+  background: #ffe600;
+  padding: 25px 20px;
+  text-align: center;
 }
 
-header h1{
-  margin:0;
-  font-size:28px;
+header h1 {
+  margin: 0;
+  font-size: 28px;
 }
 
-header p{
-  color:#555;
+header p {
+  margin: 8px 0 15px;
+  color: #555;
 }
 
-.container{
-  max-width:1250px;
-  margin:30px auto;
-  padding:0 20px;
+.language-switch {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
+.lang-btn {
+  width: auto;
+  margin: 0;
+  padding: 9px 18px;
+  border: 2px solid #333;
+  border-radius: 20px;
+  background: white;
+  color: #222;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.card{
-  background:white;
-  padding:22px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+.lang-btn.active {
+  background: #333;
+  color: white;
 }
 
-h2{
-  margin-top:0;
+.container {
+  max-width: 1250px;
+  margin: 30px auto;
+  padding: 0 20px;
 }
 
-label{
-  display:block;
-  margin-top:14px;
-  font-weight:bold;
-  font-size:14px;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-input,select{
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:15px;
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
-.result{
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-  padding:11px 0;
-  border-bottom:1px solid #eee;
+h2 {
+  margin-top: 0;
 }
 
-.result strong{
-  text-align:right;
+label {
+  display: block;
+  margin-top: 14px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-.auto{
-  color:#00a650;
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
 }
 
-.highlight{
-  border:2px solid #00a650;
+.result {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eee;
 }
 
-.profit{
-  color:#00a650;
-  font-size:20px;
+.result strong {
+  text-align: right;
 }
 
-.info{
-  background:#f5f8ff;
-  padding:14px;
-  border-radius:8px;
-  margin-top:16px;
-  font-size:13px;
-  line-height:1.6;
+.auto {
+  color: #00a650;
 }
 
-.warning{
-  background:#fff8d7;
-  padding:14px;
-  border-radius:8px;
-  margin-top:16px;
-  font-size:13px;
-  line-height:1.6;
+.highlight {
+  border: 2px solid #00a650;
 }
 
-table{
-  width:100%;
-  border-collapse:collapse;
+.profit {
+  color: #00a650;
+  font-size: 20px;
 }
 
-th,td{
-  padding:10px;
-  border-bottom:1px solid #eee;
-  text-align:right;
+.info {
+  background: #f5f8ff;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.warning {
+  background: #fff8d7;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: right;
 }
 
 th:first-child,
-td:first-child{
-  text-align:left;
+td:first-child {
+  text-align: left;
 }
 
-.good{
-  color:#00a650;
-  font-weight:bold;
+.good {
+  color: #00a650;
+  font-weight: bold;
 }
 
-.bad{
-  color:#d93025;
-  font-weight:bold;
+.bad {
+  color: #d93025;
+  font-weight: bold;
 }
 
-footer{
-  text-align:center;
-  padding:30px;
-  color:#777;
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #777;
+  font-size: 13px;
 }
 
+@media(max-width:600px) {
+  header h1 {
+    font-size: 22px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
+
 <h1>🇲🇽 Mexico E-commerce Profit Calculator</h1>
-<p>采购成本 · CBM · 国际物流 · Mercado Libre · 利润分析</p>
+
+<p data-i18n="subtitle">
+采购成本 · CBM · 国际物流 · Mercado Libre · 利润分析
+</p>
+
+<div class="language-switch">
+
+<button
+class="lang-btn active"
+id="zhBtn"
+onclick="setLanguage('zh')">
+🇨🇳 中文
+</button>
+
+<button
+class="lang-btn"
+id="esBtn"
+onclick="setLanguage('es')">
+🇲🇽 Español
+</button>
+
+</div>
+
 </header>
 
 
 <div class="container">
+
+
+<!-- PRODUCT + PURCHASE + SHIPPING -->
 
 <div class="grid">
 
@@ -165,43 +226,70 @@ footer{
 
 <div class="card">
 
-<h2>📦 产品</h2>
+<h2 data-i18n="productTitle">
+📦 产品信息
+</h2>
 
-<label>产品名称</label>
-<input id="productName"
-       value="宠物衣服">
 
-<label>产品种类</label>
+<label data-i18n="productName">
+产品名称
+</label>
+
+<input
+id="productName"
+type="text"
+value="宠物衣服">
+
+
+<label data-i18n="category">
+产品种类
+</label>
 
 <select id="category">
-<option value="textile">
-纺织品 / Textil
+
+<option
+value="textile"
+data-i18n="textile">
+纺织品
 </option>
+
 </select>
 
 
-<label>购买数量 / 件</label>
+<label data-i18n="quantity">
+购买数量 / 件
+</label>
 
-<input id="quantity"
-       type="number"
-       value="600">
+<input
+id="quantity"
+type="number"
+value="600"
+min="1">
 
 
-<label>每件采购单价 RMB</label>
+<label data-i18n="unitPrice">
+每件采购单价 RMB
+</label>
 
-<input id="unitPrice"
-       type="number"
-       value="10.94"
-       step="0.01">
+<input
+id="unitPrice"
+type="number"
+value="10.94"
+step="0.01"
+min="0">
 
 
 <div class="info">
 
-<strong>你只需要填写数量和单价。</strong>
+<strong data-i18n="autoHintTitle">
+自动计算
+</strong>
 
-<br>
+<br><br>
 
-采购总金额、CBM、重量和物流费用将自动计算。
+<span data-i18n="autoHint">
+你只需要填写产品数量和每件采购单价。采购总金额、CBM、物流费用和落地成本将自动计算。
+</span>
 
 </div>
 
@@ -209,16 +297,20 @@ footer{
 
 
 
-<!-- AUTO PURCHASE -->
+<!-- PURCHASE -->
 
 <div class="card">
 
-<h2>💴 自动采购成本</h2>
+<h2 data-i18n="purchaseTitle">
+💴 采购成本
+</h2>
 
 
 <div class="result">
 
-<span>数量</span>
+<span data-i18n="quantityResult">
+商品数量
+</span>
 
 <strong id="showQuantity">
 0 件
@@ -229,7 +321,9 @@ footer{
 
 <div class="result">
 
-<span>单价</span>
+<span data-i18n="unitPurchasePrice">
+单件采购价
+</span>
 
 <strong id="showUnitPrice">
 ¥0
@@ -240,10 +334,13 @@ footer{
 
 <div class="result">
 
-<span>采购总金额</span>
+<span data-i18n="purchaseTotal">
+采购总金额
+</span>
 
-<strong class="auto"
-        id="purchaseTotal">
+<strong
+class="auto"
+id="purchaseTotal">
 ¥0
 </strong>
 
@@ -252,7 +349,9 @@ footer{
 
 <div class="result">
 
-<span>平均采购成本</span>
+<span data-i18n="averagePurchase">
+平均采购成本
+</span>
 
 <strong id="purchaseUnit">
 ¥0
@@ -268,15 +367,20 @@ footer{
 
 <div class="card">
 
-<h2>🚢 国际物流</h2>
+<h2 data-i18n="shippingTitle">
+🚢 国际物流
+</h2>
 
 
 <div class="result">
 
-<span>预计体积</span>
+<span data-i18n="estimatedVolume">
+预计体积
+</span>
 
-<strong class="auto"
-        id="cbm">
+<strong
+class="auto"
+id="cbm">
 0 CBM
 </strong>
 
@@ -285,10 +389,13 @@ footer{
 
 <div class="result">
 
-<span>预计重量</span>
+<span data-i18n="estimatedWeight">
+预计重量
+</span>
 
-<strong class="auto"
-        id="weight">
+<strong
+class="auto"
+id="weight">
 0 kg
 </strong>
 
@@ -297,7 +404,9 @@ footer{
 
 <div class="result">
 
-<span>计费方式</span>
+<span data-i18n="billingMethod">
+计费方式
+</span>
 
 <strong id="shippingMethod">
 -
@@ -308,7 +417,9 @@ footer{
 
 <div class="result">
 
-<span>物流单价</span>
+<span data-i18n="shippingRate">
+物流单价
+</span>
 
 <strong id="shippingRate">
 -
@@ -319,10 +430,13 @@ footer{
 
 <div class="result">
 
-<span>预计国际运费</span>
+<span data-i18n="estimatedShipping">
+预计国际运费
+</span>
 
-<strong class="auto"
-        id="shippingTotal">
+<strong
+class="auto"
+id="shippingTotal">
 ¥0
 </strong>
 
@@ -331,7 +445,9 @@ footer{
 
 <div class="result">
 
-<span>单件国际运费</span>
+<span data-i18n="shippingPerUnit">
+单件国际运费
+</span>
 
 <strong id="shippingUnit">
 ¥0
@@ -342,71 +458,95 @@ footer{
 
 <div class="info">
 
-<strong>当前纺织品物流规则</strong>
+<strong data-i18n="textileRule">
+当前纺织品物流规则
+</strong>
 
 <br><br>
 
+<span data-i18n="volumeRule">
 600件宠物衣服 = 0.4 CBM
+</span>
 
 <br>
 
+<span data-i18n="cbmRule">
 1 CBM ≈ 1500件
+</span>
+
+<br><br>
+
+<span data-i18n="underCBM">
+不足1 CBM：¥39 / kg
+</span>
 
 <br>
 
-不足1 CBM：
-¥39 / kg
-
-<br>
-
-达到1 CBM：
-¥3700 / CBM
+<span data-i18n="overCBM">
+达到1 CBM：¥3700 / CBM
+</span>
 
 </div>
 
 
 <div class="warning">
 
-⚠️ 请填写宠物衣服的平均单件重量。
+<strong data-i18n="weightTitle">
+⚠️ 平均单件重量
+</strong>
 
-<br><br>
+<br>
 
-因为不足1 CBM按照公斤收费，
-体积不能直接转换成重量。
+<span data-i18n="weightExplain">
+不足1 CBM时按照公斤收费，因此需要填写平均单件重量。
+</span>
 
-<label>平均每件重量 kg</label>
 
-<input id="unitWeight"
-       type="number"
-       value="0"
-       step="0.001">
+<label data-i18n="unitWeight">
+平均每件重量 kg
+</label>
 
-例如200克请输入：
+<input
+id="unitWeight"
+type="number"
+value="0"
+step="0.001"
+min="0">
 
-<strong>0.2</strong>
+
+<span data-i18n="weightExample">
+例如：200克请输入 0.2
+</span>
 
 </div>
 
 </div>
 
-
 </div>
+
 
 
 <!-- LANDED COST -->
 
-<div class="card highlight"
-     style="margin-top:20px">
+<div
+class="card highlight"
+style="margin-top:20px">
 
-<h2>🇲🇽 墨西哥落地成本</h2>
+<h2 data-i18n="landedTitle">
+🇲🇽 墨西哥落地成本
+</h2>
+
 
 <div class="grid">
 
 <div>
 
+
 <div class="result">
 
-<span>采购总额 RMB</span>
+<span data-i18n="purchaseRMB">
+采购总额 RMB
+</span>
 
 <strong id="purchaseRMB">
 ¥0
@@ -417,7 +557,9 @@ footer{
 
 <div class="result">
 
-<span>国际运费 RMB</span>
+<span data-i18n="freightRMB">
+国际运费 RMB
+</span>
 
 <strong id="freightRMB">
 ¥0
@@ -428,10 +570,13 @@ footer{
 
 <div class="result">
 
-<span>人民币总成本</span>
+<span data-i18n="totalRMB">
+人民币总成本
+</span>
 
-<strong class="auto"
-        id="totalRMB">
+<strong
+class="auto"
+id="totalRMB">
 ¥0
 </strong>
 
@@ -442,17 +587,23 @@ footer{
 
 <div>
 
-<label>人民币 → MXN 汇率</label>
+<label data-i18n="exchange">
+人民币 → MXN 汇率
+</label>
 
-<input id="exchange"
-       type="number"
-       value="2.45"
-       step="0.01">
+<input
+id="exchange"
+type="number"
+value="2.45"
+step="0.01"
+min="0">
 
 
 <div class="result">
 
-<span>总落地成本 MXN</span>
+<span data-i18n="totalMXN">
+总落地成本 MXN
+</span>
 
 <strong id="totalMXN">
 $0
@@ -463,10 +614,13 @@ $0
 
 <div class="result">
 
-<span>单件落地成本 MXN</span>
+<span data-i18n="landedUnit">
+单件落地成本 MXN
+</span>
 
-<strong class="auto"
-        id="landedUnit">
+<strong
+class="auto"
+id="landedUnit">
 $0
 </strong>
 
@@ -482,61 +636,95 @@ $0
 
 <!-- MERCADO LIBRE -->
 
-<div class="card"
-     style="margin-top:20px">
+<div
+class="card"
+style="margin-top:20px">
 
-<h2>🛒 Mercado Libre México</h2>
+<h2>
+🛒 Mercado Libre México
+</h2>
 
 
 <div class="grid">
 
 <div>
 
-<label>销售价格 MXN</label>
 
-<input id="salePrice"
-       type="number"
-       value="299">
+<label data-i18n="salePrice">
+销售价格 MXN / 件
+</label>
 
-
-<label>Mercado Libre销售费 %</label>
-
-<input id="commission"
-       type="number"
-       value="15"
-       step="0.1">
+<input
+id="salePrice"
+type="number"
+value="299"
+step="1"
+min="0">
 
 
-<label>Mercado Envíos / 件 MXN</label>
+<label data-i18n="commission">
+Mercado Libre 销售费 %
+</label>
 
-<input id="mlShipping"
-       type="number"
-       value="0">
+<input
+id="commission"
+type="number"
+value="15"
+step="0.1"
+min="0">
+
+
+<label data-i18n="mlShipping">
+Mercado Envíos / 件 MXN
+</label>
+
+<input
+id="mlShipping"
+type="number"
+value="0"
+step="0.01"
+min="0">
 
 </div>
 
 
 <div>
 
-<label>包装 / 件 MXN</label>
 
-<input id="packaging"
-       type="number"
-       value="5">
+<label data-i18n="packaging">
+包装成本 / 件 MXN
+</label>
+
+<input
+id="packaging"
+type="number"
+value="5"
+step="0.01"
+min="0">
 
 
-<label>广告成本 %</label>
+<label data-i18n="ads">
+广告成本 %
+</label>
 
-<input id="ads"
-       type="number"
-       value="0">
+<input
+id="ads"
+type="number"
+value="0"
+step="0.1"
+min="0">
 
 
-<label>税费 / 预扣 %</label>
+<label data-i18n="tax">
+税费 / 预扣 %
+</label>
 
-<input id="tax"
-       type="number"
-       value="10">
+<input
+id="tax"
+type="number"
+value="10"
+step="0.1"
+min="0">
 
 </div>
 
@@ -548,19 +736,25 @@ $0
 
 <!-- PROFIT -->
 
-<div class="card highlight"
-     style="margin-top:20px">
+<div
+class="card highlight"
+style="margin-top:20px">
 
-<h2>💰 利润分析</h2>
+<h2 data-i18n="profitTitle">
+💰 利润分析
+</h2>
 
 
 <div class="grid">
 
 <div>
 
+
 <div class="result">
 
-<span>销售价格</span>
+<span data-i18n="salePriceResult">
+销售价格
+</span>
 
 <strong id="showSalePrice">
 $0
@@ -571,7 +765,9 @@ $0
 
 <div class="result">
 
-<span>单件落地成本</span>
+<span data-i18n="landedCostResult">
+单件落地成本
+</span>
 
 <strong id="profitLanded">
 $0
@@ -582,7 +778,9 @@ $0
 
 <div class="result">
 
-<span>ML销售费</span>
+<span data-i18n="mlFee">
+ML销售费
+</span>
 
 <strong id="mlFee">
 $0
@@ -593,9 +791,24 @@ $0
 
 <div class="result">
 
-<span>税费 / 预扣</span>
+<span data-i18n="taxResult">
+税费 / 预扣
+</span>
 
 <strong id="taxCost">
+$0
+</strong>
+
+</div>
+
+
+<div class="result">
+
+<span data-i18n="adsResult">
+广告成本
+</span>
+
+<strong id="adsCost">
 $0
 </strong>
 
@@ -606,12 +819,16 @@ $0
 
 <div>
 
+
 <div class="result">
 
-<span>单件净利润</span>
+<span data-i18n="profitPerUnit">
+单件净利润
+</span>
 
-<strong class="profit"
-        id="profitUnit">
+<strong
+class="profit"
+id="profitUnit">
 $0
 </strong>
 
@@ -620,7 +837,9 @@ $0
 
 <div class="result">
 
-<span>利润率</span>
+<span data-i18n="margin">
+利润率
+</span>
 
 <strong id="margin">
 0%
@@ -631,10 +850,13 @@ $0
 
 <div class="result">
 
-<span>全部售完预计利润</span>
+<span data-i18n="totalProfit">
+全部售完预计利润
+</span>
 
-<strong class="profit"
-        id="totalProfit">
+<strong
+class="profit"
+id="totalProfit">
 $0
 </strong>
 
@@ -643,7 +865,9 @@ $0
 
 <div class="result">
 
-<span>盈亏平衡售价</span>
+<span data-i18n="breakEven">
+盈亏平衡售价
+</span>
 
 <strong id="breakEven">
 $0
@@ -655,16 +879,33 @@ $0
 
 </div>
 
+
+<div class="warning">
+
+<span data-i18n="taxWarning">
+⚠️ Mercado Libre 销售费、Mercado Envíos、广告费和税费/预扣目前为手动输入。预扣金额用于现金流估算，不一定等于最终实际税负。
+</span>
+
+</div>
+
 </div>
 
 
 
-<!-- PRICE SIMULATOR -->
+<!-- SIMULATOR -->
 
-<div class="card"
-     style="margin-top:20px">
+<div
+class="card"
+style="margin-top:20px">
 
-<h2>📊 售价模拟器</h2>
+<h2 data-i18n="simulatorTitle">
+📊 售价模拟器
+</h2>
+
+<p data-i18n="simulatorDescription">
+自动比较不同 Mercado Libre 售价下的预计利润。
+</p>
+
 
 <table>
 
@@ -672,38 +913,514 @@ $0
 
 <tr>
 
-<th>售价</th>
+<th data-i18n="tablePrice">
+售价
+</th>
 
-<th>单件利润</th>
+<th data-i18n="tableUnitProfit">
+单件利润
+</th>
 
-<th>利润率</th>
+<th data-i18n="tableMargin">
+利润率
+</th>
 
-<th>全部售完利润</th>
+<th data-i18n="tableTotalProfit">
+全部售完利润
+</th>
 
 </tr>
 
 </thead>
 
-<tbody id="simulation"></tbody>
+<tbody id="simulation">
+</tbody>
 
 </table>
 
 </div>
 
+
 </div>
 
 
 
-<footer>
-
-Mexico E-commerce Profit Calculator · V3
-
+<footer data-i18n="footer">
+Mexico E-commerce Profit Calculator · V3.1
 </footer>
+
 
 
 <script>
 
-function num(id){
+/* =========================
+   LANGUAGE
+========================= */
+
+const translations = {
+
+zh: {
+
+subtitle:
+"采购成本 · CBM · 国际物流 · Mercado Libre · 利润分析",
+
+productTitle:
+"📦 产品信息",
+
+productName:
+"产品名称",
+
+category:
+"产品种类",
+
+textile:
+"纺织品",
+
+quantity:
+"购买数量 / 件",
+
+unitPrice:
+"每件采购单价 RMB",
+
+autoHintTitle:
+"自动计算",
+
+autoHint:
+"你只需要填写产品数量和每件采购单价。采购总金额、CBM、物流费用和落地成本将自动计算。",
+
+purchaseTitle:
+"💴 采购成本",
+
+quantityResult:
+"商品数量",
+
+unitPurchasePrice:
+"单件采购价",
+
+purchaseTotal:
+"采购总金额",
+
+averagePurchase:
+"平均采购成本",
+
+shippingTitle:
+"🚢 国际物流",
+
+estimatedVolume:
+"预计体积",
+
+estimatedWeight:
+"预计重量",
+
+billingMethod:
+"计费方式",
+
+shippingRate:
+"物流单价",
+
+estimatedShipping:
+"预计国际运费",
+
+shippingPerUnit:
+"单件国际运费",
+
+textileRule:
+"当前纺织品物流规则",
+
+volumeRule:
+"600件宠物衣服 = 0.4 CBM",
+
+cbmRule:
+"1 CBM ≈ 1500件",
+
+underCBM:
+"不足1 CBM：¥39 / kg",
+
+overCBM:
+"达到1 CBM：¥3700 / CBM",
+
+weightTitle:
+"⚠️ 平均单件重量",
+
+weightExplain:
+"不足1 CBM时按照公斤收费，因此需要填写平均单件重量。",
+
+unitWeight:
+"平均每件重量 kg",
+
+weightExample:
+"例如：200克请输入 0.2",
+
+landedTitle:
+"🇲🇽 墨西哥落地成本",
+
+purchaseRMB:
+"采购总额 RMB",
+
+freightRMB:
+"国际运费 RMB",
+
+totalRMB:
+"人民币总成本",
+
+exchange:
+"人民币 → MXN 汇率",
+
+totalMXN:
+"总落地成本 MXN",
+
+landedUnit:
+"单件落地成本 MXN",
+
+salePrice:
+"销售价格 MXN / 件",
+
+commission:
+"Mercado Libre 销售费 %",
+
+mlShipping:
+"Mercado Envíos / 件 MXN",
+
+packaging:
+"包装成本 / 件 MXN",
+
+ads:
+"广告成本 %",
+
+tax:
+"税费 / 预扣 %",
+
+profitTitle:
+"💰 利润分析",
+
+salePriceResult:
+"销售价格",
+
+landedCostResult:
+"单件落地成本",
+
+mlFee:
+"ML销售费",
+
+taxResult:
+"税费 / 预扣",
+
+adsResult:
+"广告成本",
+
+profitPerUnit:
+"单件净利润",
+
+margin:
+"利润率",
+
+totalProfit:
+"全部售完预计利润",
+
+breakEven:
+"盈亏平衡售价",
+
+taxWarning:
+"⚠️ Mercado Libre 销售费、Mercado Envíos、广告费和税费/预扣目前为手动输入。预扣金额用于现金流估算，不一定等于最终实际税负。",
+
+simulatorTitle:
+"📊 售价模拟器",
+
+simulatorDescription:
+"自动比较不同 Mercado Libre 售价下的预计利润。",
+
+tablePrice:
+"售价",
+
+tableUnitProfit:
+"单件利润",
+
+tableMargin:
+"利润率",
+
+tableTotalProfit:
+"全部售完利润",
+
+footer:
+"Mexico E-commerce Profit Calculator · V3.1",
+
+pieces:
+"件",
+
+weightBilling:
+"按重量计费",
+
+cbmBilling:
+"按 CBM 计费"
+
+},
+
+
+es: {
+
+subtitle:
+"Costos de compra · CBM · Envío internacional · Mercado Libre · Análisis de ganancias",
+
+productTitle:
+"📦 Información del producto",
+
+productName:
+"Nombre del producto",
+
+category:
+"Categoría",
+
+textile:
+"Textiles",
+
+quantity:
+"Cantidad / piezas",
+
+unitPrice:
+"Precio de compra por unidad RMB",
+
+autoHintTitle:
+"Cálculo automático",
+
+autoHint:
+"Solo necesitas ingresar la cantidad y el precio de compra por unidad. El costo total, CBM, envío y costo puesto en México se calculan automáticamente.",
+
+purchaseTitle:
+"💴 Costo de compra",
+
+quantityResult:
+"Cantidad",
+
+unitPurchasePrice:
+"Precio por unidad",
+
+purchaseTotal:
+"Costo total de compra",
+
+averagePurchase:
+"Costo promedio por unidad",
+
+shippingTitle:
+"🚢 Envío internacional",
+
+estimatedVolume:
+"Volumen estimado",
+
+estimatedWeight:
+"Peso estimado",
+
+billingMethod:
+"Método de cobro",
+
+shippingRate:
+"Tarifa de envío",
+
+estimatedShipping:
+"Costo estimado de envío",
+
+shippingPerUnit:
+"Envío por unidad",
+
+textileRule:
+"Reglas actuales para textiles",
+
+volumeRule:
+"600 prendas para mascota = 0.4 CBM",
+
+cbmRule:
+"1 CBM ≈ 1500 piezas",
+
+underCBM:
+"Menos de 1 CBM: ¥39 / kg",
+
+overCBM:
+"Desde 1 CBM: ¥3700 / CBM",
+
+weightTitle:
+"⚠️ Peso promedio por unidad",
+
+weightExplain:
+"Para cargas menores a 1 CBM el envío se cobra por kilogramo, por lo que es necesario indicar el peso promedio por unidad.",
+
+unitWeight:
+"Peso promedio por unidad (kg)",
+
+weightExample:
+"Ejemplo: para 200 gramos ingresa 0.2",
+
+landedTitle:
+"🇲🇽 Costo puesto en México",
+
+purchaseRMB:
+"Costo de compra RMB",
+
+freightRMB:
+"Envío internacional RMB",
+
+totalRMB:
+"Costo total RMB",
+
+exchange:
+"Tipo de cambio RMB → MXN",
+
+totalMXN:
+"Costo total puesto en México",
+
+landedUnit:
+"Costo unitario puesto en México",
+
+salePrice:
+"Precio de venta MXN / unidad",
+
+commission:
+"Comisión de Mercado Libre %",
+
+mlShipping:
+"Mercado Envíos / unidad MXN",
+
+packaging:
+"Costo de empaque / unidad MXN",
+
+ads:
+"Costo de publicidad %",
+
+tax:
+"Impuestos / retenciones %",
+
+profitTitle:
+"💰 Análisis de ganancias",
+
+salePriceResult:
+"Precio de venta",
+
+landedCostResult:
+"Costo unitario puesto en México",
+
+mlFee:
+"Comisión de Mercado Libre",
+
+taxResult:
+"Impuestos / retenciones",
+
+adsResult:
+"Costo de publicidad",
+
+profitPerUnit:
+"Ganancia neta por unidad",
+
+margin:
+"Margen de ganancia",
+
+totalProfit:
+"Ganancia estimada total",
+
+breakEven:
+"Precio de equilibrio",
+
+taxWarning:
+"⚠️ La comisión de Mercado Libre, Mercado Envíos, publicidad e impuestos/retenciones se ingresan manualmente. Las retenciones sirven para estimar el flujo de efectivo y no necesariamente representan la carga fiscal final.",
+
+simulatorTitle:
+"📊 Simulador de precios",
+
+simulatorDescription:
+"Compara automáticamente la ganancia estimada con diferentes precios de venta en Mercado Libre.",
+
+tablePrice:
+"Precio",
+
+tableUnitProfit:
+"Ganancia por unidad",
+
+tableMargin:
+"Margen",
+
+tableTotalProfit:
+"Ganancia total",
+
+footer:
+"Mexico E-commerce Profit Calculator · V3.1",
+
+pieces:
+"pzas.",
+
+weightBilling:
+"Cobro por peso",
+
+cbmBilling:
+"Cobro por CBM"
+
+}
+
+};
+
+
+let currentLanguage =
+localStorage.getItem("language") || "zh";
+
+
+function setLanguage(language) {
+
+currentLanguage = language;
+
+localStorage.setItem(
+"language",
+language
+);
+
+document.documentElement.lang =
+language === "zh"
+? "zh-CN"
+: "es-MX";
+
+
+document
+.querySelectorAll("[data-i18n]")
+.forEach(function(element) {
+
+const key =
+element.getAttribute("data-i18n");
+
+if (
+translations[language] &&
+translations[language][key]
+) {
+
+element.textContent =
+translations[language][key];
+
+}
+
+});
+
+
+document
+.getElementById("zhBtn")
+.classList.toggle(
+"active",
+language === "zh"
+);
+
+
+document
+.getElementById("esBtn")
+.classList.toggle(
+"active",
+language === "es"
+);
+
+
+calculate();
+
+}
+
+
+
+/* =========================
+   NUMBER HELPERS
+========================= */
+
+function num(id) {
 
 return parseFloat(
 document.getElementById(id).value
@@ -712,15 +1429,15 @@ document.getElementById(id).value
 }
 
 
-function rmb(v){
+function rmb(value) {
 
 return "¥" +
-v.toFixed(2);
+value.toFixed(2);
 
 }
 
 
-function mxn(v){
+function mxn(value) {
 
 return new Intl.NumberFormat(
 "es-MX",
@@ -728,22 +1445,32 @@ return new Intl.NumberFormat(
 style:"currency",
 currency:"MXN"
 }
-).format(v);
+).format(value);
 
 }
 
 
 
-function baseCalculation(){
+/* =========================
+   BASE COST CALCULATION
+========================= */
+
+function baseCalculation() {
 
 const quantity =
-Math.max(num("quantity"),1);
+Math.max(
+num("quantity"),
+1
+);
+
 
 const unitPrice =
 num("unitPrice");
 
+
 const unitWeight =
 num("unitWeight");
+
 
 const exchange =
 num("exchange");
@@ -751,14 +1478,10 @@ num("exchange");
 
 
 /*
-VOLUME RULE
+600 PET CLOTHES = 0.4 CBM
 
-600 pieces = 0.4 CBM
-
-therefore:
-
-1 piece =
-0.4 / 600 CBM
+CBM PER UNIT:
+0.4 / 600
 */
 
 const cbmPerUnit =
@@ -766,66 +1489,74 @@ const cbmPerUnit =
 
 
 const cbm =
-quantity * cbmPerUnit;
+quantity *
+cbmPerUnit;
 
 
 
 /*
-WEIGHT
+TOTAL WEIGHT
 */
 
 const weight =
-quantity * unitWeight;
+quantity *
+unitWeight;
 
 
 
 /*
-PURCHASE
+PURCHASE COST
 */
 
 const purchase =
-quantity * unitPrice;
+quantity *
+unitPrice;
 
 
 
 /*
 SHIPPING RULE
 
-< 1 CBM
+LESS THAN 1 CBM:
 39 RMB / KG
 
->= 1 CBM
+1 CBM OR MORE:
 3700 RMB / CBM
 */
 
-let shipping;
+let shipping = 0;
 
-let shippingMethod;
+let shippingMethod = "";
 
-let shippingRate;
+let shippingRate = "";
 
 
-
-if(cbm < 1){
+if (cbm < 1) {
 
 shipping =
 weight * 39;
 
+
 shippingMethod =
-"按重量计费";
+translations[currentLanguage]
+.weightBilling;
+
 
 shippingRate =
 "¥39 / kg";
 
 }
 
-else{
+else {
 
 shipping =
 cbm * 3700;
 
+
 shippingMethod =
-"按CBM计费";
+translations[currentLanguage]
+.cbmBilling;
+
 
 shippingRate =
 "¥3700 / CBM";
@@ -835,19 +1566,22 @@ shippingRate =
 
 
 const totalRMB =
-purchase + shipping;
+purchase +
+shipping;
 
 
 const totalMXN =
-totalRMB * exchange;
+totalRMB *
+exchange;
 
 
 const landedUnit =
-totalMXN / quantity;
+totalMXN /
+quantity;
 
 
 
-return{
+return {
 
 quantity,
 unitPrice,
@@ -868,9 +1602,13 @@ landedUnit
 
 
 
-function profitAtPrice(price){
+/* =========================
+   PROFIT CALCULATION
+========================= */
 
-const b =
+function profitAtPrice(price) {
+
+const base =
 baseCalculation();
 
 
@@ -894,25 +1632,26 @@ const packaging =
 num("packaging");
 
 
-
 const mlFee =
-price * commission;
+price *
+commission;
 
 
 const taxCost =
-price * tax;
+price *
+tax;
 
 
 const adsCost =
-price * ads;
-
+price *
+ads;
 
 
 const profit =
 
 price
 
-- b.landedUnit
+- base.landedUnit
 
 - mlFee
 
@@ -925,7 +1664,6 @@ price
 - packaging;
 
 
-
 const margin =
 
 price > 0
@@ -935,10 +1673,9 @@ price > 0
 : 0;
 
 
+return {
 
-return{
-
-...b,
+...base,
 mlFee,
 taxCost,
 adsCost,
@@ -951,165 +1688,260 @@ margin
 
 
 
-function calculate(){
+/* =========================
+   MAIN CALCULATION
+========================= */
 
-const b =
+function calculate() {
+
+const base =
 baseCalculation();
 
 
-const price =
+const salePrice =
 num("salePrice");
 
 
-const p =
-profitAtPrice(price);
+const profit =
+profitAtPrice(
+salePrice
+);
+
+
+const piecesWord =
+translations[currentLanguage]
+.pieces;
 
 
 
-document.getElementById(
-"showQuantity"
-).innerText =
-b.quantity + " 件";
+document
+.getElementById("showQuantity")
+.innerText =
 
-
-document.getElementById(
-"showUnitPrice"
-).innerText =
-rmb(b.unitPrice);
-
-
-document.getElementById(
-"purchaseTotal"
-).innerText =
-rmb(b.purchase);
-
-
-document.getElementById(
-"purchaseUnit"
-).innerText =
-rmb(b.unitPrice);
+base.quantity +
+" " +
+piecesWord;
 
 
 
-document.getElementById(
-"cbm"
-).innerText =
-b.cbm.toFixed(3) +
+document
+.getElementById("showUnitPrice")
+.innerText =
+
+rmb(
+base.unitPrice
+);
+
+
+
+document
+.getElementById("purchaseTotal")
+.innerText =
+
+rmb(
+base.purchase
+);
+
+
+
+document
+.getElementById("purchaseUnit")
+.innerText =
+
+rmb(
+base.unitPrice
+);
+
+
+
+document
+.getElementById("cbm")
+.innerText =
+
+base.cbm.toFixed(3) +
 " CBM";
 
 
-document.getElementById(
-"weight"
-).innerText =
-b.weight.toFixed(2) +
+
+document
+.getElementById("weight")
+.innerText =
+
+base.weight.toFixed(2) +
 " kg";
 
 
-document.getElementById(
-"shippingMethod"
-).innerText =
-b.shippingMethod;
+
+document
+.getElementById("shippingMethod")
+.innerText =
+
+base.shippingMethod;
 
 
-document.getElementById(
-"shippingRate"
-).innerText =
-b.shippingRate;
+
+document
+.getElementById("shippingRate")
+.innerText =
+
+base.shippingRate;
 
 
-document.getElementById(
-"shippingTotal"
-).innerText =
-rmb(b.shipping);
 
+document
+.getElementById("shippingTotal")
+.innerText =
 
-document.getElementById(
-"shippingUnit"
-).innerText =
 rmb(
-b.shipping /
-b.quantity
+base.shipping
 );
 
 
 
-document.getElementById(
-"purchaseRMB"
-).innerText =
-rmb(b.purchase);
+document
+.getElementById("shippingUnit")
+.innerText =
 
-
-document.getElementById(
-"freightRMB"
-).innerText =
-rmb(b.shipping);
-
-
-document.getElementById(
-"totalRMB"
-).innerText =
-rmb(b.totalRMB);
-
-
-document.getElementById(
-"totalMXN"
-).innerText =
-mxn(b.totalMXN);
-
-
-document.getElementById(
-"landedUnit"
-).innerText =
-mxn(b.landedUnit);
+rmb(
+base.shipping /
+base.quantity
+);
 
 
 
-document.getElementById(
-"showSalePrice"
-).innerText =
-mxn(price);
+document
+.getElementById("purchaseRMB")
+.innerText =
+
+rmb(
+base.purchase
+);
 
 
-document.getElementById(
-"profitLanded"
-).innerText =
-mxn(b.landedUnit);
+
+document
+.getElementById("freightRMB")
+.innerText =
+
+rmb(
+base.shipping
+);
 
 
-document.getElementById(
-"mlFee"
-).innerText =
-mxn(p.mlFee);
+
+document
+.getElementById("totalRMB")
+.innerText =
+
+rmb(
+base.totalRMB
+);
 
 
-document.getElementById(
-"taxCost"
-).innerText =
-mxn(p.taxCost);
+
+document
+.getElementById("totalMXN")
+.innerText =
+
+mxn(
+base.totalMXN
+);
 
 
-document.getElementById(
-"profitUnit"
-).innerText =
-mxn(p.profit);
+
+document
+.getElementById("landedUnit")
+.innerText =
+
+mxn(
+base.landedUnit
+);
 
 
-document.getElementById(
-"margin"
-).innerText =
-p.margin.toFixed(1) +
+
+document
+.getElementById("showSalePrice")
+.innerText =
+
+mxn(
+salePrice
+);
+
+
+
+document
+.getElementById("profitLanded")
+.innerText =
+
+mxn(
+base.landedUnit
+);
+
+
+
+document
+.getElementById("mlFee")
+.innerText =
+
+mxn(
+profit.mlFee
+);
+
+
+
+document
+.getElementById("taxCost")
+.innerText =
+
+mxn(
+profit.taxCost
+);
+
+
+
+document
+.getElementById("adsCost")
+.innerText =
+
+mxn(
+profit.adsCost
+);
+
+
+
+document
+.getElementById("profitUnit")
+.innerText =
+
+mxn(
+profit.profit
+);
+
+
+
+document
+.getElementById("margin")
+.innerText =
+
+profit.margin.toFixed(1) +
 "%";
 
 
-document.getElementById(
-"totalProfit"
-).innerText =
+
+document
+.getElementById("totalProfit")
+.innerText =
+
 mxn(
-p.profit *
-b.quantity
+profit.profit *
+base.quantity
 );
 
 
+
+/*
+BREAK EVEN PRICE
+*/
 
 const percentageCosts =
 
@@ -1120,15 +1952,13 @@ num("commission") / 100
 + num("ads") / 100;
 
 
-
 const fixedCosts =
 
-b.landedUnit
+base.landedUnit
 
 + num("mlShipping")
 
 + num("packaging");
-
 
 
 const breakEven =
@@ -1141,23 +1971,28 @@ const breakEven =
 : 0;
 
 
+document
+.getElementById("breakEven")
+.innerText =
 
-document.getElementById(
-"breakEven"
-).innerText =
-mxn(breakEven);
+mxn(
+breakEven
+);
 
 
-
-simulate();
+simulatePrices();
 
 }
 
 
 
-function simulate(){
+/* =========================
+   PRICE SIMULATOR
+========================= */
 
-const price =
+function simulatePrices() {
+
+const currentPrice =
 num("salePrice") || 299;
 
 
@@ -1170,15 +2005,21 @@ num("quantity"),
 
 const prices = [
 
-Math.max(1,price-100),
+Math.max(
+1,
+currentPrice - 100
+),
 
-Math.max(1,price-50),
+Math.max(
+1,
+currentPrice - 50
+),
 
-price,
+currentPrice,
 
-price+50,
+currentPrice + 50,
 
-price+100
+currentPrice + 100
 
 ];
 
@@ -1192,11 +2033,10 @@ document.getElementById(
 table.innerHTML = "";
 
 
-
 prices.forEach(
-function(testPrice){
+function(testPrice) {
 
-const p =
+const result =
 profitAtPrice(
 testPrice
 );
@@ -1215,28 +2055,28 @@ ${mxn(testPrice)}
 </td>
 
 <td class="${
-p.profit >= 0
+result.profit >= 0
 ? "good"
 : "bad"
 }">
-${mxn(p.profit)}
+${mxn(result.profit)}
 </td>
 
 <td class="${
-p.margin >= 0
+result.margin >= 0
 ? "good"
 : "bad"
 }">
-${p.margin.toFixed(1)}%
+${result.margin.toFixed(1)}%
 </td>
 
 <td class="${
-p.profit >= 0
+result.profit >= 0
 ? "good"
 : "bad"
 }">
 ${mxn(
-p.profit *
+result.profit *
 quantity
 )}
 </td>
@@ -1244,7 +2084,9 @@ quantity
 `;
 
 
-table.appendChild(row);
+table.appendChild(
+row
+);
 
 });
 
@@ -1252,13 +2094,18 @@ table.appendChild(row);
 
 
 
+/* =========================
+   AUTO UPDATE
+========================= */
+
 document
 .querySelectorAll(
-"input,select"
+"input, select"
 )
-.forEach(function(el){
+.forEach(
+function(element) {
 
-el.addEventListener(
+element.addEventListener(
 "input",
 calculate
 );
@@ -1266,7 +2113,14 @@ calculate
 });
 
 
-calculate();
+
+/* =========================
+   START
+========================= */
+
+setLanguage(
+currentLanguage
+);
 
 </script>
 
